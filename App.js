@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button, Linking } from 'react-native-web';
+import { Button, Linking } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.body}>
       <Text style={styles.text}> Meu primeiro app</Text>
-      <Button title='Meu Github' onPress={()=>{Linking.openURL('https://github.com/juliovianadev')}}></Button>
+      <Button title='Meu Github' onPress={()=>{Linking.openURL('https://github.com/juliovianadev')}}/>
     </View>
   );
 }
