@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   Button,
-  Linking,
 } from 'react-native';
 
 const App = () => {
+  const [counter, setCounter] = useState(0);
+
+  const onClickHandler = () => {
+    setCounter(counter + 1)
+  }
+
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>hello world</Text>
-      <Button title='meu github' onPress={()=>{Linking.openURL('https://github.com/juliovianadev')}}></Button>
+      <Text style={styles.text}>{counter * 5}</Text>
+      <Button title='Add' onPress={onClickHandler}></Button>
+      <Text style={styles.text}>You clicked {counter} times</Text>
     </View>
   );
 };
@@ -19,19 +25,16 @@ const App = () => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#0726D9',
+    backgroundColor: '#0000ff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
     color: '#ffffff',
     fontSize: 20,
-    fontStyle:'italic',
+    fontStyle: 'italic',
     margin: 10,
   },
-  button:{
-    backgroundColor:""
-  }
 });
 
 export default App;
