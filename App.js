@@ -64,6 +64,8 @@ const App = () => {
       )}
     />
     // <FlatList
+    //horizontal
+    // inverted
     //   keyExtractor={(item, index) => index.toString()}
     //   data={Items}
     //   renderItem={({ item }) => (
