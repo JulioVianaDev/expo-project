@@ -80,57 +80,7 @@ const App = () => {
         secureTextEntry
       />
     </View>
-    // <SectionList
-    //   keyExtractor={(item, index) => index.toString()}
-    //   sections={DATA}
-    //   renderItem={({ item }) => (
-    //     <Text style={styles.text}>{item}</Text>
-    //   )}
-    //   renderSectionHeader={({section})=>(
-    //     <View style={styles.item}>
-    //       <Text style={styles.text}>{section.title}</Text>
-    //     </View>
-    //   )}
-    // />
-    // <FlatList
-    //horizontal
-    // inverted
-    //   keyExtractor={(item, index) => index.toString()}
-    //   data={Items}
-    //   renderItem={({ item }) => (
-    //     <View style={styles.item}>
-    //       <Text style={styles.text}>{item.name}</Text>
-    //     </View>
-    //   )}
-    //   refreshControl={
-    //     <RefreshControl
-    //       refreshing={Refreshing}
-    //       onRefresh={onRefresh}
-    //       colors={['#ff00ff']}
-    //     />
-    //   }
-    // />
-
-    // <ScrollView
-    //   style={styles.body}
-    //   refreshControl={
-    //     <RefreshControl
-    //       refreshing={Refreshing}
-    //       onRefresh={onRefresh}
-    //       colors={['#ff00ff']}
-    //     />
-    //   }
-    // >
-    //   {
-    //     Items.map((object) => {
-    //       return (
-    //         <View style={styles.item} key={object.key}>
-    //           <Text style={styles.text}>{object.item}</Text>
-    //         </View>
-    //       )
-    //     })
-    //   }
-    // </ScrollView>
+   
   );
 };
 
