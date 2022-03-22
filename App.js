@@ -8,9 +8,10 @@ import {
   FlatList,
   SectionList,
 } from 'react-native';
+import { TextInput } from 'react-native';
 
 const App = () => {
-
+  const [name, setName] = useState('');
   const [Items, setItems] = useState([
     { name: 'Item 1' },
     { name: 'Item 2' },
@@ -51,18 +52,46 @@ const App = () => {
   }
 
   return (
-    <SectionList
-      keyExtractor={(item, index) => index.toString()}
-      sections={DATA}
-      renderItem={({ item }) => (
-        <Text style={styles.text}>{item}</Text>
-      )}
-      renderSectionHeader={({section})=>(
-        <View style={styles.item}>
-          <Text style={styles.text}>{section.title}</Text>
-        </View>
-      )}
-    />
+
+    <View style={styles.body}>
+      <Text style={styles.text}>
+        Por favor escreva seu nome
+      </Text>
+      <TextInput style={styles.input}
+      multiline
+        placeholder='Ex: Julio Viana'
+        onChangeText={(value)=>setName(value)}
+        maxLength={20}
+      />
+      <Text style={styles.text}>
+          Seu nome é: {name} ?
+      </Text>
+      <Text style={styles.text}>
+          agora digite sua idade
+      </Text>
+      <TextInput style={styles.input}
+        keyboardType='numeric'
+        editable={false}
+      />
+      <Text style={styles.text}>
+          informe sua senha
+      </Text>
+      <TextInput style={styles.input}
+        secureTextEntry
+      />
+    </View>
+    // <SectionList
+    //   keyExtractor={(item, index) => index.toString()}
+    //   sections={DATA}
+    //   renderItem={({ item }) => (
+    //     <Text style={styles.text}>{item}</Text>
+    //   )}
+    //   renderSectionHeader={({section})=>(
+    //     <View style={styles.item}>
+    //       <Text style={styles.text}>{section.title}</Text>
+    //     </View>
+    //   )}
+    // />
     // <FlatList
     //horizontal
     // inverted
@@ -110,6 +139,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#ffffff',
+    alignItems:'center',
+  },
+  input:{
+    width: 200,
+    borderWidth: 1,
+    borderColor:'#ff00ff',
+    borderRadius: 5,
+    textAlign: 'center',
+    fontSize: 14,
   },
   item: {
     margin: 10,
