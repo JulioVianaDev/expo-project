@@ -9,40 +9,12 @@ import {
   SectionList,
 } from 'react-native';
 import { TextInput } from 'react-native';
+import { Button } from 'react-native';
 
 const App = () => {
   const [name, setName] = useState('');
-  const [Items, setItems] = useState([
-    { name: 'Item 1' },
-    { name: 'Item 2' },
-    { name: 'Item 3' },
-    { name: 'Item 4' },
-    { name: 'Item 5' },
-    { name: 'Item 6' },
-    { name: 'Item 7' },
-    { name: 'Item 8' },
-    { name: 'Item 9' },
-    { name: 'Item 27' },
-    { name: 'Item 78' },
-  ]);
-  const DATA = [
-    {
-      title: 'Title 1',
-      data: ['Item 1-1', 'Item 1-2', 'Item 1-3'],
-    },
-    {
-      title: 'Title 2',
-      data: ['Item 2-1', 'Item 2-2', 'Item 2-3'],
-    },
-    {
-      title: 'Title 3',
-      data: ['Item 3-1'],
-    },
-    {
-      title: 'Title 4',
-      data: ['Item 4-1', 'Item 4-2'],
-    },
-  ]
+  const [submitted, setSubtmit] = useState('');
+  
   const [Refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
@@ -51,6 +23,9 @@ const App = () => {
     setRefreshing(false);
   }
 
+  const onPressHandler =()=>{
+
+  }
   return (
 
     <View style={styles.body}>
@@ -66,18 +41,9 @@ const App = () => {
       <Text style={styles.text}>
           Seu nome é: {name} ?
       </Text>
-      <Text style={styles.text}>
-          agora digite sua idade
-      </Text>
-      <TextInput style={styles.input}
-        keyboardType='numeric'
-        editable={false}
-      />
-      <Text style={styles.text}>
-          informe sua senha
-      </Text>
-      <TextInput style={styles.input}
-        secureTextEntry
+      <Button
+        title='Enviar'
+        onPress={onPressHandler}
       />
     </View>
    
@@ -98,6 +64,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     fontSize: 14,
+  },
+  button:{
+    marginBottom: 10,
   },
   item: {
     margin: 10,
