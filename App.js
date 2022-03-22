@@ -6,7 +6,8 @@ import {
   ScrollView,
   RefreshControl,
   FlatList,
-  SectionList,
+  SectionList, 
+  TouchableOpacity,
 } from 'react-native';
 import { TextInput } from 'react-native';
 import { Button } from 'react-native';
@@ -24,7 +25,7 @@ const App = () => {
   }
 
   const onPressHandler =()=>{
-
+    setSubtmit(!submitted)
   }
   return (
 
@@ -38,13 +39,35 @@ const App = () => {
         onChangeText={(value)=>setName(value)}
         maxLength={20}
       />
-      <Text style={styles.text}>
-          Seu nome é: {name} ?
-      </Text>
-      <Button
-        title='Enviar'
+     
+        {/*
+          <Button
+            title={submitted? 'Limpar' : 'Enviar'}
+            onPress={onPressHandler}
+            // este argumento serve para desativar o botão depois dele ser ativado
+            //disabled={submitted}
+            color={'#ff00ff'}
+          />
+        */}
+      <TouchableOpacity
         onPress={onPressHandler}
-      />
+        style={styles.button}
+        activeOpacity={0.2}
+      >
+        <Text
+          style={styles.text}
+        >
+          {submitted? 'Limpar' : 'Enviar'}
+        </Text>
+      </TouchableOpacity>
+      {submitted? 
+        <Text style={styles.text}>
+          Você foi registrado com {name} 
+        </Text>
+        :
+        null
+    }
+       
     </View>
    
   );
@@ -67,6 +90,7 @@ const styles = StyleSheet.create({
   },
   button:{
     marginBottom: 10,
+    borderColor:'#ff00ff',
   },
   item: {
     margin: 10,
