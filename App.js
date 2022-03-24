@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native';
 import { Button } from 'react-native';
+import { TouchableHighlight } from 'react-native';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -49,17 +51,30 @@ const App = () => {
             color={'#ff00ff'}
           />
         */}
-      <TouchableOpacity
+      {/* <TouchableHighlight
         onPress={onPressHandler}
         style={styles.button}
         activeOpacity={0.2}
       >
         <Text
           style={styles.text}
-        >
+        >   
           {submitted? 'Limpar' : 'Enviar'}
         </Text>
-      </TouchableOpacity>
+      </TouchableHighlight> */}
+      <Pressable
+        style={({pressed})=>[
+          {backgroundColor: pressed ? '#dddddd' : '#00ff00' },
+          styles.button
+        ]}
+        onLongPress={onPressHandler}
+        delayLongPress={2000}
+        onPress={onPressHandler}
+        hitSlop={{top: 10, bottom: 10, right: 10, left: 10}}
+
+      >
+        {submitted? 'Clear': 'Enviar'}
+      </Pressable>
       {submitted? 
         <Text style={styles.text}>
           Você foi registrado com {name} 
@@ -91,6 +106,7 @@ const styles = StyleSheet.create({
   button:{
     marginBottom: 10,
     borderColor:'#ff00ff',
+    backgroundColor: '#4ae1fa',
   },
   item: {
     margin: 10,
