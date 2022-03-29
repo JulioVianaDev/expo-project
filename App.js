@@ -4,11 +4,9 @@ import {
   View,
   Text,
   TextInput,
-  Button,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
   Pressable,
+  Alert,
+  ToastAndroid,
 } from 'react-native';
 
 const App = () => {
@@ -16,7 +14,33 @@ const App = () => {
   const [name, SetName] = useState('');
   const [submitted, SetSubmitted] = useState(false);
   const onPressHandler = () => {
-    SetSubmitted(!submitted);
+    if (name.length > 3) {
+      SetSubmitted(!submitted);
+    } else{
+      // Alert.alert("Warning",'O nome usado tem menos de 3 caracteres',[
+      //   {
+      //     text: 'não mostrar novamente',
+      //     onPress:()=>console.warn('Não mostrar novamente pressionado')
+      //   },
+      //   {
+      //     text: 'OK',
+      //     onPress:()=>console.warn('Ok pressionado')
+      //   },
+      //   {
+      //     text: 'Cancelar',
+      //     onPress:()=>console.warn('Cancelar pressionado')
+      //   },
+      // ],{
+      //   cancelable: true, 
+      //   onDismiss:()=>console.warn('alerta skkipado')
+      //  }) 
+      //ESTE CÓDIGO SÓ FUNCIONA NO ANDROID
+      ToastAndroid.showWithGravity('o nome precisa ter mais que 3 caracteres',
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+       
+      )
+    }
   }
 
   return (
@@ -29,31 +53,17 @@ const App = () => {
         placeholder='e.g. John'
         onChangeText={(value) => SetName(value)}
       />
-      {/* <Button
-        title={submitted ? 'Clear' : 'Submit'}
-        onPress={onPressHandler}
-        color='#00f'
-      /> */}
-      {/* <TouchableWithoutFeedback
-        onPress={onPressHandler}
-      >
-        <View style={styles.button}>
-          <Text style={styles.text}>
-            {submitted ? 'Clear' : 'Submit'}
-          </Text>
-        </View>
-      </TouchableWithoutFeedback> */}
       <Pressable
         onPress={onPressHandler}
         hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
-        android_ripple={{color:'#00f'}}
+        android_ripple={{ color: '#00f' }}
         style={({ pressed }) => [
           { backgroundColor: pressed ? '#dddddd' : '#00ff00' },
           styles.button
         ]}
       >
         <Text style={styles.text}>
-          {submitted ? 'Limpar' : 'Enviar'}
+          {submitted ? 'Clear' : 'Submit'}
         </Text>
       </Pressable>
       {submitted ?
