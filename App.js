@@ -1,42 +1,71 @@
 import React, {useEffect, useState} from 'react'
-import {SafeAreaView, View,FlatList,Image,Text} from 'react-native'
-
+import {SafeAreaView, View,FlatList,Image,Text,StyleSheet} from 'react-native'
+import {Imagem,Nome} from './components/estilizados'
+import styled from 'styled-components/native'
 export default function App(){
-  const [pokemons,setPokemons] = useState([])
+  const [allMovies,setAllMovie] = useState([])
   useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon',{
-      method: 'GET',
-      headers:{
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => response.json())
+    fetch('https://ghibliapi.herokuapp.com/films')
+    .then(response=>response.json())
     .then(data=>{
-      console.log(data)
-      setPokemons(data.results)
+        data.forEach(data=>{
+            console.log(data.title);
+            console.log(data.description)
+            console.log(data.release_date)
+        })
+        setAllMovie(data);
+    }).catch(err=>{
+        console.log(err)
     })
   },[])
+
   return(
-    <SafeAreaView>
-      <FlatList
-        data={pokemons}
-        keyExtractor={(pokemon)=>pokemon.name}
-        contentContainerStyle={{flexGrow: 1}}
-        renderItem={PokemonShow}
-      />
-    </SafeAreaView> 
+    <Corpo style={styles.body}>
+     <Text>Ghibli Movies</Text> 
+     <FlatList
+        data={allMovies}
+        renderItem={({item})=>
+          <View>
+            <TextTitle>{item.title}</TextTitle>
+            <ImagemGhibli
+              source={{uri: item.image}}
+            />
+          </View>
+        }
+     />
+    </Corpo>
   )
 }
+const ImagemGhibli = styled.Image`
+  width: 250px;
+  height: 400px;
+`;
 
-function PokemonShow(item){
-  const {name,url} = item.item
-  const pokemonNumber = url.replace('https://pokeapi.co/api/v2/pokemon','')
-
-  const ImageUrl = 'https://cdn.traction.one/pokedex/pokemon'+ pokemonNumber+'.png'
-  return(
-    <View style={{flexDirection: 'row'}}>
-      <Image style={{width:50,height:50}} source={{ uri: ImageUrl.replace('/.png','.png')}}/>
-      <Text>{name}</Text>
-    </View>
-  )
-}
+const Corpo=styled.View`
+align-items:center;
+`;
+const TextTitle= styled.Text`
+  font-size:33px;
+  font-family:cursive;
+  color: #f3f;
+`;
+const styles = StyleSheet.create({
+  body:{
+    backgroundColor: '#00BFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex:1,
+  },
+  text: {
+   color: '#fff',
+   fontSize: 20,
+   fontStyle: 'italic',
+  },
+  button:{
+    paddingTop: 10,
+  },
+  imagemG:{
+    width:55,
+    height:35
+  }
+});
